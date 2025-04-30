@@ -93,6 +93,13 @@ def apply_caching(resp):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Macproxy command line arguments")
     parser.add_argument(
+        "--host",
+        type=str,
+        default="0.0.0.0",
+        action="store",
+        help="IP address to listen on (default: 0.0.0.0 - all interfaces)",
+        )
+    parser.add_argument(
         "--port",
         type=int,
         default=5000,
@@ -123,4 +130,4 @@ if __name__ == "__main__":
     app.config["USER_AGENT"] = arguments.user_agent
     app.config["HTML_FORMATTER"] = arguments.html_formatter
     app.config["DISABLE_CHAR_CONVERSION"] = arguments.disable_char_conversion
-    app.run(host="0.0.0.0", port=arguments.port)
+    app.run(host=arguments.host, port=arguments.port)

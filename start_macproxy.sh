@@ -56,6 +56,9 @@ while [ "$1" != "" ]; do
     PARAM=$(echo "$1" | awk -F= '{print $1}')
     VALUE=$(echo "$1" | awk -F= '{print $2}')
     case $PARAM in
+    -h | --host)
+        HOST="--host $VALUE"
+        ;;
 	-p | --port)
 	    PORT="--port $VALUE"
 	    ;;
@@ -68,4 +71,4 @@ while [ "$1" != "" ]; do
 done
 
 echo "Starting Macproxy..."
-python3 proxy.py ${PORT}
+python3 proxy.py ${HOST} ${PORT}
